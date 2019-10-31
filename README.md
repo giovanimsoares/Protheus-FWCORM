@@ -1,5 +1,5 @@
 # Protheus-FWCORM
-Classe AdvPL para desempenhar um papél próximo ao de um ORM (Object Relational Mapper) para ambiente TOTVS Protheus.
+Classe AdvPL para desempenhar um papél similar ao de um ORM (Object Relational Mapper) para ambiente TOTVS Protheus.
 
 Com FWCORM e FWCORMStruct compiladas, utilize do exemplo abaixo para observação de seu funcionamento. Note que deverá ser utilizado a chave de um pedido de vendas existente na database
 
