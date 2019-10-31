@@ -6,8 +6,8 @@
 
 CLASS FWCORM FROM FWCORMStruct
 
-	DATA cAlias  // tabela principal do banco de dados para instanciaÁ„o da classe
-	DATA aLabels // apelidos amig·veis para referenciar tabelas do banco de dados
+	DATA cAlias  // tabela principal do banco de dados para instancia√ß√£o da classe
+	DATA aLabels // apelidos amig√°veis para referenciar tabelas do banco de dados
 	DATA oData
 
 	METHOD New( cAlias, cLabel ) CONSTRUCTOR
@@ -43,14 +43,14 @@ Return SELF
 
 /*/{Protheus.doc} FWCORMStruct:Seek()
 Localiza um registro no banco de dados e popula o objeto oData.
-@author Giovani M. Soares.
+@author Giovani Soares.
 @since 28/10/2019
 @version 1.0
-@return lRet, .T. representa sucesso na operaÁ„o e .F. indica falhas.
+@return lRet, .T. representa sucesso na opera√ß√£o e .F. indica falhas.
 @param cName, characters, Nome ou apelido da tabela do banco de dados.
-@param nIndex, numeric, Õndice para busca, valor padr„o 1.
-@param cSeek, characters, Chave de busca conforme Ìndice informado.
-@obs Obs.: O apelido (nome amig·vel) pode ser utilizado no argumento cName do mÈtodo.
+@param nIndex, numeric, √çndice para busca, valor padr√£o 1.
+@param cSeek, characters, Chave de busca conforme √≠ndice informado.
+@obs Obs.: O apelido (nome amig√°vel) pode ser utilizado no argumento cName do m√©todo.
 @type Method
 /*/
 METHOD Seek( cName, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
@@ -73,18 +73,18 @@ METHOD Seek( cName, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
 	Default cSeek  := ""
 	Default nIndex := 1
 
-	// Necess·rio tratamento por meio do BEGIN SEQUENCE
-	// pois nem sempre o objeto/array _REMNANT existir· dentro de oXML
+	// Necess√°rio tratamento por meio do BEGIN SEQUENCE
+	// pois nem sempre o objeto/array _REMNANT existir√° dentro de oXML
 	bError := ErrorBlock( {|oError| GetError(oError)})
 
 	BEGIN SEQUENCE
 
 		// --------------------------------------------------
-		// Define qual tabela ser· utilizada para realizaÁ„o
+		// Define qual tabela ser√° utilizada para realiza√ß√£o
 		// do seek no banco de dados.
 		// --
-		// Obs.: caso n„o econtre, tenta localizar a tabela
-		// pelo apelido (nome amig·vel).
+		// Obs.: caso n√£o econtre, tenta localizar a tabela
+		// pelo apelido (nome amig√°vel).
 		// --------------------------------------------------
 		If cName == ::cAlias
 			cAlias := cName
@@ -110,15 +110,15 @@ METHOD Seek( cName, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
 				aX3Names := _Super:Getnames()
 
 				For nX := 1 To Len(aX3Names)
-					// Garante que apenas a tabela apontada por cName ser· processada
+					// Garante que apenas a tabela apontada por cName ser√° processada
 					If aX3Names[nX,1] != cAlias
 						Loop
 					EndIf
-					// Gera cÛdigo para macro-execuÁ„o
+					// Gera c√≥digo para macro-execu√ß√£o
 					// Ex.: Self:oStruct:SC5:SX3:C5_FILIAL:X3_CONTEXT
 					cX3_CONTEXT := "Self:oStruct:" + aX3Names[nX,1] +":SX3:"+ aX3Names[nX,2] + ":X3_CONTEXT"
-					// Conforme macro-execuÁ„o, avalia se o campo È Real ou Virtual
-					// Caso seja, virtual, È ignorado
+					// Conforme macro-execu√ß√£o, avalia se o campo √© Real ou Virtual
+					// Caso seja, virtual, √© ignorado
 					If ( &(cX3_CONTEXT) != "V" )
 						oJsValue[aX3Names[nX,2]] := (cAlias)->(&(aX3Names[nX,2]))
 					EndIf
@@ -147,7 +147,7 @@ METHOD Seek( cName, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
 
 	END SEQUENCE
 
-	ErrorBlock(bError) // restaura tratamento de erro padr„o do sistema
+	ErrorBlock(bError) // restaura tratamento de erro padr√£o do sistema
 
 Return lRet
 
