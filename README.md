@@ -3,7 +3,7 @@ Classe AdvPL para desempenhar um papél próximo ao de um ORM (Object Relational
 
 Com FWCORM e FWCORMStruct compiladas, utilize do exemplo abaixo para observação de seu funcionamento. Note que deverá ser utilizado a chave de um pedido de vendas existente na database
 
-```java
+```xBase
 #INCLUDE "TBICONN.CH"
 #INCLUDE "PROTHEUS.CH"
 
@@ -38,16 +38,16 @@ Return()
 ```
 # Implementações futuras...
 ### 1. Método SetFilter() 
-```java
+```xBase
 oVendas:SetFilter("C5_CLIENTE='000987' AND C5_EMISSAO >= '20191001' AND C6_PRODUTO <> '000321'" )
 ```
 ### 2. Método SetRelation() 
-```java
+```xBase
 oVendas:SetRelation("SC6",{ {"C6_FILIAL","C5_FILIAL"}, {"C6_NUM","C5_NUM"} },"Itens")
 oVendas:SetRelation("SA1",{ {"A1_FILIAL","xFilial('SA1')"}, {"A1_COD","C5_CLIENTE"}, {"A1_LOJA","C5_LOJACLI"} },"Cliente")
 ```
 ### 3. Método GetLenght() e getFieldValue() 
-```java
+```xBase
 For nX := 1 to oVendas:GetLenght("Pedidos")
 	ConOut(oVendas:getFieldValue("C5_NUM","Pedidos",nY))
 	For nY := 1 to oVendas:GetLenght("Itens",nX)
@@ -56,7 +56,7 @@ For nX := 1 to oVendas:GetLenght("Pedidos")
 Next
 ```
 ### 4. Método updFieldValue() 
-```java
+```xBase
 // Exemplo 1
 oVendas:updFieldValue("C5_ENTREG", "PEDIDOS", "AV. DESEMB. SANTOS NEVES, 748", 123 )
 
@@ -69,7 +69,7 @@ Next
 
 ```
 ### 5. Método GetPosition() 
-```java
+```xBase
 // ############################################################
 // Obtem lista de posições referenciando objetos de oVendas
 // em que C6_PRODUTO seja igual à "005147".
@@ -90,7 +90,7 @@ oLista := oVendas:GetPosition( { |obj| obj:PEDIDOS:ITENS:C6_PRODUTO == "005147" 
 aTES := oVendas:getFieldValue("C6_TES","Itens",oLista)
 ```
 ### 6. Método upFieldValue() 
-```java
+```xBase
 // ############################################################
 // Atualiza o conteúdo de C6_OBS com a string "TESTE" passando
 // oLista como argumento. Ou seja, todos os elementos
