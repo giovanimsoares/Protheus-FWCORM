@@ -26,8 +26,8 @@ User Function ADVPLTest()
 
 		oVendas := FWCORM():New("SC5","Pedidos")
 		If oVendas:Seek("Pedidos",xFilial("SC5")+"000001",1) // utilizar um pedido válido na database!!
-			oVendas:oData:Pedidos[1]:C5_EMISSAO // "2019/10/30"
-			oVendas:oStruct:SC5:SX3:C5_EMISSAO:X3_TITULO // "DT Emissao"
+			ConOut(oVendas:oData:Pedidos[1]:C5_EMISSAO) // "2019/10/30"
+			ConOut(oVendas:oStruct:SC5:SX3:C5_EMISSAO:X3_TITULO) // "DT Emissao"
 		EndIf
 		
 	EndCase
@@ -70,7 +70,7 @@ Next
 ```
 ### 5. Método GetPosition() 
 ```python
-// ------------------------------------------------------------
+// ############################################################
 // Obtem lista de posições referenciando objetos de oVendas
 // em que C6_PRODUTO seja igual à "005147".
 // --
@@ -85,18 +85,18 @@ Next
 //				"ITENS" :[1,2]
 //			}
 // ] }
-// ------------------------------------------------------------
+// ############################################################
 oLista := oVendas:GetPosition( { |obj| obj:PEDIDOS:ITENS:C6_PRODUTO == "005147" } )
 aTES := oVendas:getFieldValue("C6_TES","Itens",oLista)
 ```
 ### 6. Método upFieldValue() 
 ```python
-// ------------------------------------------------------------
+// ############################################################
 // Atualiza o conteúdo de C6_OBS com a string "TESTE" passando
 // oLista como argumento. Ou seja, todos os elementos
 // referenciados por oLista serão atualizados
-// --
+// ##
 // Obs.: Retorna .T. ou .F. para indicar sucesso ou falha.
-// ------------------------------------------------------------
+// ############################################################
 oVendas:updFieldValue( "C6_OBS", "ITENS", "TESTE", oLista )
 ```
