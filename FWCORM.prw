@@ -52,7 +52,7 @@ Localiza um registro no banco de dados e popula o objeto oData.
 @param cSeek, characters, Chave de busca conforme índice informado.
 @obs Obs.: O apelido (nome amigável) pode ser utilizado no argumento cName do método.
 @type Method
-/*/
+*/
 METHOD Seek( cName, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
 
 	Local nPos     := 0
