@@ -25,8 +25,11 @@ User Function ADVPLTest()
 		Private lRet := nil
 
 		oVendas := FWCORM():New("SC5","Pedidos")
-		lRet := oVendas:Seek("Pedidos",xFilial("SC5")+"000001",1) // utilizar um pedido válido na database!!
-
+		If oVendas:Seek("Pedidos",xFilial("SC5")+"000001",1) // utilizar um pedido válido na database!!
+			oVendas:oData:Pedidos[1]:C5_EMISSAO // "2019/10/30"
+			oVendas:oStruct:SC5:SX3:C5_EMISSAO:X3_TITULO // "DT Emissao"
+		EndIf
+		
 	EndCase
 
 	RESET ENVIRONMENT
