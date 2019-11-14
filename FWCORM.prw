@@ -54,7 +54,7 @@ Localiza um conjunto de registro no banco de dados e popula o objeto oData.
 @param cSeek, characters, Chave de busca conforme índice informado.
 @obs Obs.: O apelido (nome amigável) pode ser utilizado no argumento cAlias do método.
 @type Method
-/*/
+*/
 METHOD FindAll( aExpr ) CLASS FWCORM AS LOGICAL
 
 	Local aData        := {}
@@ -157,7 +157,7 @@ Localiza um registro no banco de dados e popula o objeto oData.
 @param cSeek, characters, Chave de busca conforme índice informado.
 @obs Obs.: O apelido (nome amigável) pode ser utilizado no argumento cAlias do método.
 @type Method
-/*/
+*/
 METHOD Seek( cAlias, cSeek, nIndex ) CLASS FWCORM AS LOGICAL
 
 	Local nPos     := 0
@@ -271,7 +271,7 @@ Localiza o apelido do objeto pelo nome do alias informado.
 @param cAlias, characters, nome da tabela para busca
 @param aLabel, array, array de apelidos que será realizada a busca
 @type Static Function
-/*/
+*/
 Static Function getLabel(cAlias,aLabels)
 	Local nPos := 0
 	Local cLabel := ""
@@ -295,7 +295,7 @@ Localiza o alias do objeto pelo nome amigável (label) informado.
 @param cLabel, characters, nome amigável para busca
 @param aLabels, array, array de apelidos que será realizada a busca
 @type Static Function
-/*/
+*/
 Static Function getAlias(cLabel,aLabels)
 	Local nPos := 0
 	Local cAlias := ""
@@ -317,7 +317,7 @@ Constrói uma consulta SQL a partir dos parâmetros de entrada aExpr e aFields
 @param aExpr, array, expressão para formatação em sintaxe de consulta sql
 @param aFields, array, array contendo o nome dos campos
 @type Static Function
-/*/
+*/
 Static Function mkSQL(aExpr,aFields,oStruct,cAlias) // TODO ajustar referencia de aFields
 
 	Local aRet         := {}
