@@ -4,6 +4,7 @@ Classe AdvPL para desempenhar um papél similar ao de um ORM (Object Relational 
 Com FWCORM e FWCORMStruct compiladas, utilize do exemplo abaixo para observação de seu funcionamento.
 
 ```xBase
+#INCLUDE "FWCORM.CH"
 #INCLUDE "TBICONN.CH"
 #INCLUDE "PROTHEUS.CH"
 
