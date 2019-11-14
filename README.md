@@ -1,7 +1,7 @@
 # Protheus-FWCORM
 Classe AdvPL para desempenhar um papél similar ao de um ORM (Object Relational Mapper) para ambiente TOTVS Protheus.
 
-Com FWCORM e FWCORMStruct compiladas, utilize do exemplo abaixo para observação de seu funcionamento. Note que deverá ser utilizado a chave de um pedido de vendas existente na database
+Com FWCORM e FWCORMStruct compiladas, utilize do exemplo abaixo para observação de seu funcionamento.
 
 ```xBase
 #INCLUDE "TBICONN.CH"
@@ -24,10 +24,25 @@ User Function ADVPLTest()
 		Private oVendas
 		Private lRet := nil
 
+		// Cria intância da classe FWCORM()
 		oVendas := FWCORM():New("SC5","Pedidos")
-		If oVendas:Seek("Pedidos",xFilial("SC5")+"000001",1) // utilizar um pedido válido na database!!
+
+		// Uso do método Seek()
+		// obs.: localiza apenas o registro correspondente à chave de busca e índices informados
+		If oVendas:Seek("Pedidos",xFilial("SC5")+"000001",1) 
 			ConOut(oVendas:oData:Pedidos[1]:C5_EMISSAO) // "2019/10/30"
 			ConOut(oVendas:oStruct:SC5:SX3:C5_EMISSAO:X3_TITULO) // "DT Emissao"
+		EndIf
+
+		// Uso do método FindAll()
+		// obs.: localiza todos os registros conforme parâmetros de busca informados
+		If oVendas:FindAll( { where{C5_NUM = '000001'} } ) 
+			oVendas:FindAll( {;
+				Where{ C5_CLIENTE ==  '006357' } ;
+				  and{ C5_LOJA    ==  '01'     } ;
+				  and{ C5_MENNOTA <>  '      ' } ;
+				  and{ C5_EMISSAO == {'20191106','20191107'} } ;
+			} )
 		EndIf
 		
 	EndCase
@@ -37,10 +52,10 @@ User Function ADVPLTest()
 Return()
 ```
 # Implementações futuras...
-### 1. Método SetFilter() 
-```xBase
-oVendas:SetFilter("C5_CLIENTE='000987' AND C5_EMISSAO >= '20191001' AND C6_PRODUTO <> '000321'" )
-```
+### 1. Método FindAll() 
+
+Incrementar o método para funcionar com argumentos "Or".
+
 ### 2. Método SetRelation() 
 ```xBase
 oVendas:SetRelation("SC6",{ {"C6_FILIAL","C5_FILIAL"}, {"C6_NUM","C5_NUM"} },"Itens")
