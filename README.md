@@ -37,12 +37,11 @@ User Function ADVPLTest()
 
 		// Uso do método FindAll()
 		// obs.: localiza todos os registros conforme parâmetros de busca informados
-		If oVendas:FindAll( { where{C5_NUM = '000001'} } ) 
-			oVendas:FindAll( {;
-				Where{ C5_CLIENTE ==  '006357' } ;
-				  and{ C5_LOJA    ==  '01'     } ;
-				  and{ C5_MENNOTA <>  '      ' } ;
-				  and{ C5_EMISSAO == {'20191106','20191107'} } ;
+		If oVendas:FindAll( {;
+			Where{ C5_CLIENTE ==  '006357' } ;
+			  and{ C5_LOJA    ==  '01'     } ;
+			  and{ C5_MENNOTA <>  '      ' } ;
+			  and{ C5_EMISSAO == {'20191106','20191107'} } ;
 			} )
 		EndIf
 		
